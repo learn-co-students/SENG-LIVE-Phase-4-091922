@@ -10,7 +10,6 @@ function Navigation() {
         <Nav> 
          <NavH1>Flatiron Theater Company</NavH1>
          <Menu>
-
            {!menu?
            <div onClick={() => setMenu(!menu)}>
              <GiHamburgerMenu size={30}/> 

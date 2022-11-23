@@ -1,8 +1,9 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
+import { useParams, useHistory} from 'react-router-dom'
 import styled from 'styled-components'
-import { useHistory } from 'react-router-dom'
 
-function ProductionForm({addProduction}) {
+
+function EditProductionForm({updateProduction}) {
   const [formData, setFormData] = useState({
     title:'',
     genre:'',
@@ -12,43 +13,29 @@ function ProductionForm({addProduction}) {
     description:''
   })
   const [errors, setErrors] = useState([])
+  const {id} = useParams()
   const history = useHistory()
 
+  useEffect(() => {
+    // GET `/productions/${id}`
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
   }
 
+
   function onSubmit(e){
     e.preventDefault()
-    // POST '/productions'
-    fetch('/productions',{
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({...formData, ongoing:true})
-    })
-    .then(res => {
-      if(res.ok){
-        res.json().then(console.log)
-      } else {
-        res.json().then(data => {
-          console.log('Error: ', Object.entries(data.errors).map(e => `${e[0]}: ${e[1]}`))
-          //data -> {errors:{}} -> Object.entries(data.errors) -> [[title,['can't be blank']]]
-          // .map(e => e[0] : e[1]) -> ['title: can't be blank']
-          setErrors(Object.entries(data.errors).map(e => `${e[0]}: ${e[1]}`))
-        })
-      }
-    })
+    //PATCH to `/productions/${id}`
   }
-  
     return (
       <div className='App'>
-        {errors?errors.map(e => <div>{e}</div>):null}
       <Form onSubmit={onSubmit}>
         <label>Title </label>
         <input type='text' name='title' value={formData.title} onChange={handleChange} />
-
+        
         <label> Genre</label>
         <input type='text' name='genre' value={formData.genre} onChange={handleChange} />
       
@@ -64,13 +51,13 @@ function ProductionForm({addProduction}) {
         <label>Description</label>
         <textarea type='text' rows='4' cols='50' name='description' value={formData.description} onChange={handleChange} />
       
-        <input type='submit' value='Add Production' />
+        <input type='submit' value='Update Production' />
       </Form>
       </div>
     )
   }
   
-  export default ProductionForm
+  export default EditProductionForm
 
   const Form = styled.form`
     display:flex;
