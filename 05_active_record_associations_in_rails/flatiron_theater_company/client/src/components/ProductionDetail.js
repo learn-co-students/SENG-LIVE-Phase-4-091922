@@ -47,11 +47,11 @@ function ProductionDetail({deleteProduction}) {
     fetch(`/tickets`,{
       method:'POST',
       headers: {'Content-Type': 'application/json'},
-      body:JSON.stringify({production_id:id, user_id:1, price:30.50})
+      body:JSON.stringify({production_id:id, user_id:3, price:30.50})
     })
     .then(res => {
       if(res.ok){
-        history.push('/users/1')
+        history.push('/users/3')
       } else {
         res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
       }
