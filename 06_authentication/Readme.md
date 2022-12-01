@@ -8,8 +8,8 @@
 - [ ] Observe how to configure CORS
 - [ ] Observe a full-stack authentication workflow via sign up page
 
-Users -< Tickets > Producitons 
-![associations.png](assets/associations.png)
+Users -< Tickets >- Producitons 
+![associations.png](associations_fixed.png)
 
 ## Deliverables
 - Review Authentication and password security with the following topics
