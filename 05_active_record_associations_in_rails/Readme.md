@@ -7,8 +7,7 @@
 - [ ] Observe how serializers are used to shape json data
 
 Users -< Tickets > Producitons 
-![associations.png](assets/associations.png)
-
+![associations.png](./assets/associations_fixed.png)
 ## Deliverables
 - Demo migrations and foreign keys
     - Create some new resources based on the diagram above. 
